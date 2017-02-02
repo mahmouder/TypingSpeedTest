@@ -76,3 +76,7 @@ span.active {
 #timer {
 	font-size: 60px;
 }
+
+#score {
+	margin-bottom: 20px;
+}

@@ -37,7 +37,8 @@
 ^{widget}
 
 <!-- Footer -->
-<footer .footer>
+<!--<footer .footer>
     <div .container>
         <p .text-muted>
             #{appCopyright $ appSettings master}
+-->

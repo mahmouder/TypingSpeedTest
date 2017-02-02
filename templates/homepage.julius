@@ -52,6 +52,7 @@ $(function(){
     	else{
     		curWordSpan.addClass('incorrect');
     		incorrectWords++;
+    		CPM -= curWord.length;
     	}
     	totalWords++;
     }
@@ -64,7 +65,7 @@ $(function(){
     		if(lines > 2){
     			mainBox.animate({
     				scrollTop: mainBox.scrollTop() + 60
-    			}, 100);
+    			}, 50);
     		}
     	}
 
@@ -138,7 +139,7 @@ $(function(){
 	    		$('.hidden').eq(0).attr('value', WPM);
 	    		$('.hidden').eq(1).attr('value', CPM);
 	    		$('#user').css('display', 'block');
-	    		$('#result').html('You typed <strong>' + CPM + ' CPM</strong> (that is <strong>' + WPM + '</strong> WPM)');
+	    		$('#result').html('You typed <strong>' + CPM + ' CPM</strong> (that is <strong>' + WPM + ' WPM</strong>)');
 	    	}
 	    }
     }
