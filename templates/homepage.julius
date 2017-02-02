@@ -1,0 +1,146 @@
+$(function(){
+	
+	var lines = 0;
+	var seconds = 60;
+	var timerStarted = false;
+    var space = 32;
+    var backspace = 8;
+    var words = $('.word');
+    var typingBox = $('#typing-box');
+    var mainBox = $('#main-textarea');
+
+    var curWordInd = 0;
+    var curCharInd = 0;
+    var curWordSpan = words.eq(curWordInd);
+    curWordSpan.addClass('active');
+    curWordSpan.siblings().removeClass('active');
+    var curWord = curWordSpan.text();
+
+    var WPM = 0;
+    var CPM = 0;
+    var totalWords = 0;
+    var correctWords = 0;
+    var incorrectWords = 0;
+    var correctChars = 0;
+    var incorrectChars = 0;
+
+    expand();
+
+    function expand(){
+    	var charArr = curWord.split('');
+    	var spans = '';
+    	for(i = 0; i < charArr.length; i++){
+    		spans += "<span>" + charArr[i] + "</span>";
+    	}
+    	curWordSpan.html(spans);
+    }
+
+    function collapse(){
+    	var charSpans = curWordSpan.children();
+    	var word = '';
+    	for(i = 0; i < charSpans.length; i++){
+    		word += charSpans.eq(i).text();
+    	}
+    	curWordSpan.html(word);
+    }
+
+    function checkCorrectness(typedWord){
+    	if(typedWord == curWord){
+    		curWordSpan.addClass('correct');
+    		correctWords++;
+    	}
+    	else{
+    		curWordSpan.addClass('incorrect');
+    		incorrectWords++;
+    	}
+    	totalWords++;
+    }
+
+    function move(){
+    	var pos = curWordSpan.position();
+    	var nextPos = curWordSpan.next().position();
+    	if(nextPos.top > pos.top){
+    		lines++;
+    		if(lines > 2){
+    			mainBox.animate({
+    				scrollTop: mainBox.scrollTop() + 60
+    			}, 100);
+    		}
+    	}
+
+    	typingBox.val('');
+    	curWordInd++;
+    	curWordSpan = words.eq(curWordInd);
+    	curWordSpan.addClass('active');
+    	curWordSpan.siblings().removeClass('active');
+    	curWord = curWordSpan.text();
+    	curCharInd = 0;
+    	expand();
+    }
+
+    function undo(){
+    	curCharInd = Math.max(0, curCharInd - 1);
+    	var charSpans = curWordSpan.children();
+	    var curCharSpan = charSpans.eq(curCharInd);
+    	curCharSpan.removeClass('correct');
+    	curCharSpan.removeClass('incorrect');
+    }
+
+    typingBox.keyup(function(e){
+    	if(e.keyCode == backspace){
+    		undo();
+    	}
+    });
+
+    typingBox.keypress(function(e){
+    	if(e.keyCode == space){
+    		var inVal = $.trim(typingBox.val());
+    		if(inVal){
+    			collapse();
+    			checkCorrectness(inVal);
+    			move();
+    		}
+    	}
+    	else if(e.keyCode >= 48 && e.keyCode <= 122){		// characters and numbers only
+    		if(!timerStarted){
+    			startTimer();
+    		}
+	    	var typedChar = String.fromCharCode(e.keyCode);
+	    	var charSpans = curWordSpan.children();
+	    	var curCharSpan = charSpans.eq(curCharInd);
+	    	var curChar = curCharSpan.text();
+	    	if(typedChar == curChar){
+	    		curCharSpan.addClass('correct');
+	    		correctChars++;
+	    	}
+	    	else{
+	    		curCharSpan.addClass('incorrect');
+	    		incorrectChars++;
+	    	}
+	    	CPM++;
+	    	WPM = Math.round(CPM / 5);
+	    	curCharInd++;
+    	}
+    });
+
+    function startTimer(){
+    	$('#userForm').children().eq(2).css('display', 'none');
+    	$('#userForm').children().eq(3).css('display', 'none');
+    	timerStarted = true;
+	    var timer = setInterval(countdown, 1000);
+	    function countdown(){
+	    	seconds--;
+	    	$('#timer').text(seconds);
+	    	//$('#stats').html('WPM: ' + WPM + '</br>CPM: ' + CPM);
+	    	if(seconds == 0){
+	    		clearInterval(timer);
+	    		typingBox.attr('disabled', 'disabled');
+	    		$('.hidden').eq(0).attr('value', WPM);
+	    		$('.hidden').eq(1).attr('value', CPM);
+	    		$('#user').css('display', 'block');
+	    		$('#result').html('You typed <strong>' + CPM + ' CPM</strong> (that is <strong>' + WPM + '</strong> WPM)');
+	    	}
+	    }
+    }
+
+});

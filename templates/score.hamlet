@@ -1,0 +1,7 @@
+<div .masthead>
+    <div .container>
+        <div .row>
+        <h1> Your Score
+        <form method=post action=@{PostNewScoreR} enctype=#{enctype}>
+            ^{widget}
+            <button .btn .btn-primary>Save

@@ -1,0 +1,78 @@
+h2##{aDomId} {
+    color: #990
+}
+
+li {
+    line-height: 2em;
+    font-size: 16px
+}
+
+.textbox {
+	min-width: 500px;
+	max-width: 700px;
+	margin: 0 auto;
+	margin-top: 5px;
+	float: none;
+	padding: 10px;
+	
+	/* Font */
+	font-size: 36px;
+    font-weight: normal;
+
+    background-color:#fff;
+    color: #2c3e50;
+
+    border-radius: 10px;
+    text-align: center;
+}
+
+#main-textarea {
+	min-height: 198px;
+	max-height: 198px;
+	overflow: hidden;
+}
+
+#typing-box {
+	padding: 30px;
+	font-size: 32px;
+}
+
+.word {
+	display: block;
+	min-width: 30px;
+	height: 50px;
+	float:left;
+	margin: 5px 0px 5px 0px;
+	letter-spacing: 2px;
+	padding: 0px 10px 5px 10px;
+	border-radius: 5px;
+}
+
+span.active {
+	background-color: #f0f0f5;
+}
+
+.correct {
+	color: #2ecc71;
+}
+
+.incorrect {
+	color: #e74c3c;
+}
+
+.hidden {
+	display: none;
+}
+
+#user {
+	display: none;
+}
+
+#username {
+	width: 250px;
+	margin: 0 auto;
+}
+
+#timer {
+	font-size: 60px;
+}

@@ -1,0 +1,31 @@
+<div .masthead>
+    <div .container>
+        <div .row>
+            <div #timer>60
+        <div .row>
+            <div #main-textarea .textbox rows="3">
+                $forall word <- wordsList
+                    <span class="word">#{word}
+        <div .row>
+            <input #typing-box .textbox type="text" class="form-control" placeholder="Type here...">
+        <div #stats .row>
+        <div #user .row>
+            <h1 #result> You typed
+            <span> Store your result
+            <form method=post action=@{HomeR} enctype=#{enctype} #userForm>
+                ^{widget}
+                <button .btn .btn-primary>Save
+        <h3>Top scorers:
+        <div #score .row>
+            $forall Entity id user <- allScores
+                <div .row>
+                    <span>
+                        <strong>
+                            #{userUsername user}
+                    <span>
+                        #{userWpm user}
+                        <i>WPM
+                    <span>
+                        #{userCpm user} 
+                        <i>CPM
+<div .container>
