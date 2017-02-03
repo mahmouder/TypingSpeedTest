@@ -1,1 +1,1 @@
-web:	stack exec -- yesod devel
+web: ./dist/build/typing-speed-test/typing-speed-test production -p $PORT
