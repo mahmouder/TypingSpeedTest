@@ -1,1 +1,1 @@
-web: ./dist/build/typing-speed-test/typing-speed-test production -p $PORT
+web: ./app/.local/bin/TypingSpeedTest production -p $PORT
