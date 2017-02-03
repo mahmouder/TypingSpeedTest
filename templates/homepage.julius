@@ -101,6 +101,7 @@ $(function(){
     			checkCorrectness(inVal);
     			move();
     		}
+    		CPM++;
     	}
     	else if(e.keyCode >= 48 && e.keyCode <= 122){		// characters and numbers only
     		if(!timerStarted){
