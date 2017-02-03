@@ -1,1 +1,1 @@
-web: ./.local/bin/TypingSpeedTest -p $PORT
+web: ./.local/bin/TypingSpeedTest
