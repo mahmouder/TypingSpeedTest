@@ -62,10 +62,10 @@ $(function(){
     	var nextPos = curWordSpan.next().position();
     	if(nextPos.top > pos.top){
     		lines++;
-    		if(lines > 2){
+    		if(lines > 1){
     			mainBox.animate({
     				scrollTop: mainBox.scrollTop() + 60
-    			}, 50);
+    			}, 200);
     		}
     	}
 
