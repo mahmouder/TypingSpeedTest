@@ -65,7 +65,7 @@ getHomeR = do
                 $(widgetFile "homepage")
         Right str -> do
             let ys = lines str
-            xs <- liftIO $ randomList 200
+            xs <- liftIO $ randomList 350
             let wordsList = [y | (i, y) <- zip [0..(length ys -1)] ys, x <- xs, i == x]
             -- $logInfo $ "Successfully read the file!"
             defaultLayout $ do
