@@ -22,6 +22,7 @@ library
                      Settings.StaticFiles
                      Handler.Common
                      Handler.Home
+                     Helpers.Heroku
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT
@@ -89,6 +90,7 @@ library
                  , case-insensitive
                  , wai
                  , random
+                 , heroku
 
 executable         TypingSpeedTest
     if flag(library-only)
