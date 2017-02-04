@@ -6,4 +6,4 @@ database:
   # something like:
   #
   #   database: "_env:SQLITE_DATABASE:TypingSpeedTest_test.sqlite3"
-  database: TypingSpeedTest_test.sqlite3
+  database: TopScorer_test

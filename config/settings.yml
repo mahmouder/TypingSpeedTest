@@ -21,9 +21,18 @@ ip-from-header: "_env:IP_FROM_HEADER:false"
 # skip-combining: false
 
 database:
+  user:     "_env:PGUSER:TypingSpeedTest_User"
+  password: "_env:PGPASS:TypingSpeedTest_Password"
+  host:     "_env:PGHOST:localhost"
+  port:     "_env:PGPORT:5432"
   # See config/test-settings.yml for an override during tests
-  database: "_env:SQLITE_DATABASE:TypingSpeedTest.sqlite3"
-  poolsize: "_env:SQLITE_POOLSIZE:10"
+  database: "_env:PGDATABASE:TopScorers"
+  poolsize: "_env:PGPOOLSIZE:10"
+
+# database:
+#   # See config/test-settings.yml for an override during tests
+#   database: "_env:SQLITE_DATABASE:TypingSpeedTest.sqlite3"
+#   poolsize: "_env:SQLITE_POOLSIZE:10"
 
 copyright: All copyrights reserved
 #analytics: UA-YOURCODE

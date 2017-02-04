@@ -25,6 +25,7 @@ userForm = User
         <$> areq textField textFieldSettings Nothing
         <*> areq hiddenField hiddenFieldSettings Nothing
         <*> areq hiddenField hiddenFieldSettings Nothing
+        <*> areq hiddenField hiddenFieldSettings Nothing
     -- Add attributes like the placeholder and CSS classes.
     where textFieldSettings = FieldSettings
             { fsLabel = ""
@@ -48,13 +49,13 @@ userForm = User
 randomList :: Int -> IO [Int]
 randomList n = do
     g <- newStdGen
-    return . take n . nub $ (randomRs (0,20000) g :: [Int])
+    return . take n . nub $ (randomRs (0,10000) g :: [Int])
 
 getHomeR :: Handler Html
 getHomeR = do
     (widget, enctype)<- generateFormPost $ renderBootstrap3 BootstrapBasicForm userForm
     allScores <- runDB $ selectList [] [Desc UserWpm, LimitTo 10]
-    file <- liftIO $ try $ readFile "static/20k.txt"
+    file <- liftIO $ try $ readFile "static/10k.txt"
     let wordsList = ["abc", "def", "ghi"] :: [String]
     case file :: Either IOException String of
         Left e -> do

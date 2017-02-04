@@ -125,6 +125,39 @@ $(function(){
     	}
     });
 
+    $(document).ready(function(){
+    	calcElapsedTime();
+    });
+
+    function formatElapsedTime(time){
+    	var elapsedTime = '';
+    	var oneD = 60 * 60 * 24;
+    	var oneH = 60 * 60;
+    	var oneM = 60;
+    	var d = Math.floor(time / oneD);
+    	var h = Math.floor(time % oneD / oneH);
+    	var m = Math.floor(time % oneH / oneM);
+    	var s = Math.floor(time % oneM);
+    	if(d != 0)elapsedTime += d + 'd ';
+    	if(h != 0)elapsedTime += h + 'h ';
+    	if(m != 0)elapsedTime += m + 'm ';
+    	elapsedTime += s + 's';
+    	return elapsedTime;
+    }
+
+    function calcElapsedTime(){
+    	var timeSpans = $('span.time');
+    	var curDate = new Date();
+    	for(i = 0; i < timeSpans.length; i++){
+    		var curTimeSpan = timeSpans.eq(i);
+    		var userDate = new Date(curTimeSpan.text());
+    		var diffInMs = new Date(curDate - userDate).getTime();
+    		var elapsedTime = formatElapsedTime(diffInMs / 1000);
+    		curTimeSpan.text(elapsedTime + ' ago');
+    	}
+   		$('#score').css('visibility', 'visible');
+    }
+
     function startTimer(){
     	$('#userForm').children().eq(2).css('display', 'none');
     	$('#userForm').children().eq(3).css('display', 'none');
@@ -139,6 +172,7 @@ $(function(){
 	    		typingBox.attr('disabled', 'disabled');
 	    		$('.hidden').eq(0).attr('value', WPM);
 	    		$('.hidden').eq(1).attr('value', CPM);
+	    		$('.hidden').eq(2).attr('value', new Date($.now()));
 	    		$('#user').css('display', 'block');
 	    		$('#result').html('You typed <strong>' + CPM + ' CPM</strong> (that is <strong>' + WPM + ' WPM</strong>)');
 	    	}

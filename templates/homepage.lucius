@@ -79,4 +79,16 @@ span.active {
 
 #score {
 	margin-bottom: 20px;
+	margin-top: 10px;
+	visibility: hidden;
+}
+
+span.username {
+	color: #16a085;
+	margin-right: 20px;
+}
+
+span.time {
+	margin-left: 20px;
+	margin-right: 5px;
 }

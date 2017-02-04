@@ -19,13 +19,14 @@
         <div #score .row>
             $forall Entity id user <- allScores
                 <div .row>
-                    <span>
+                    <span .username>
                         <strong>
                             #{userUsername user}
                     <span>
-                        #{userWpm user}
+                        <strong>#{userWpm user}
                         <i>WPM
                     <span>
-                        #{userCpm user} 
+                        <strong>#{userCpm user} 
                         <i>CPM
-<div .container>
+                    <span .time>
+                        #{userTime user}
